@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>My Workspace</title>
+  </head>
+  <body>
+    <div id="app-hook"></div>
+
+    <script data-main="app/main.js" src="../node_modules/requirejs/require.js"></script>
+    <script>
+      require.config({
+        // baseUrl: '.',
+
+        paths: {
+          'backbone': '../lib/backbone-min',
+          'underscore': '../lib/underscore-min',
+          'jquery': '../lib/jquery-3.2.1.min',
+          'marionette': '../lib/backbone.marionette.min',
+          'backbone.radio': '../lib/backbone.radio',
+          "text": '../lib/text'
+        },
+        // TODO When do I need this?
+  			// shim : {
+  			// 	'backbone' : {
+  			// 		deps : [ 'underscore', 'jquery' ]
+  			// 	}
+        // },
+
+
+        urlArgs : 'ts=' + (new Date()).getTime()
+
+      });
+    </script>
+  </body>
+</html>

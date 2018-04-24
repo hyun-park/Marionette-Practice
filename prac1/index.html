@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>My Workspace</title>
+  </head>
+  <body>
+    <div id="app-hook"></div>
+
+    <script data-main="scripts/main" src="./node_modules/requirejs/require.js"></script>
+    <script>
+      require.config({
+        baseUrl: '.',
+
+        paths: {
+          'jquery': 'lib/jquery-3.3.1.min'
+        },
+
+
+        urlArgs : 'ts=' + (new Date()).getTime();
+
+      });
+
+
+    	// require.config({
+    	// 	waitSeconds : 0
+    	// });
+      // require(['main'], function(){
+      //   console.log("hi!");
+      // });
+      // require(['app/init/init']);
+    </script>
+  </body>
+</html>
