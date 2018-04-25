@@ -1,0 +1,11 @@
+<script type="text/template">
+    <form>
+        <label for="id_text">Todo Text</label>
+        <input type="text" name="text" id="id_text" value="<%- text %>" />
+        <label for="id_assignee">Assign to</label>
+        <input type="text" name="assignee" id="id_assignee" value="<%- assignee %>"/>
+
+        <button id="btn-add">Add Item</button>
+    </form>
+    <span id="error-msg"></span>
+</script>
