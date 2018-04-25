@@ -9,9 +9,12 @@ require([
     });
 
     var TodoList = Marionette.CollectionView.extend({
-      el: "#app-hook",
-      tagName: "ul",
+      el: "ul",
       childView: TodoView
+    });
+
+    var AppView = Marionette.View.extend({
+
     });
 
     var list = new Backbone.Collection([
