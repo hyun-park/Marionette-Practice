@@ -1,12 +1,14 @@
 define(
     [
         'backbone',
+        'underscore',
         'marionette',
         'views/list',
         'views/form',
         'text!templates/layout.html',
     ],function(
         Backbone,
+        _,
         Marionette,
         TodoListView,
         FormView,
@@ -22,7 +24,29 @@ define(
                 form: "#form-container"
             },
 
-            onRender: function() {
+            // onRender: function() {
+            //     var todo = new TodoListView({
+            //         collection: this.collection
+            //     });
+            //
+            //     var form = new FormView({
+            //         model: this.model,
+            //         collection: this.collection
+            //     })
+            //
+            //     this.showChildView('itemList', todo);
+            //     this.showChildView('form', form);
+            // },
+            main: function() {
+                var MainView = Marionette.View.extend({
+                    tagName: 'li',
+                    template: _.template('HELLO BACKBONE!')
+                });
+                var mainView = new MainView();
+                this.showChildView('itemList', mainView)
+            },
+
+            showIndex: function() {
                 var todo = new TodoListView({
                     collection: this.collection
                 });
