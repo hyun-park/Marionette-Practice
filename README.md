@@ -8,7 +8,7 @@ Last Updated by 04.25.18
 
 ## Marionette JS 란?
 
-(업데이트 예정)
+`JavaScript`의 SPA 라이브러리 중 하나인 `Backbone JS`의 확장 라이브러리인 `Marionette JS`는 
 
 ## 설치 방법
 
