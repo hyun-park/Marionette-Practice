@@ -62,13 +62,11 @@ Last Updated by 04.30.18
 require.config({
     paths: {
         // 각종 라이브러리를 불러와 줍니다.
-        'jQuery': './lib/jquery-3.2.1.min.js',
-        'underscore': './lib/underscore-min.js',
-        'backbone': './lib/backbone-min.js',
-        'marionette': './lib/backbone.marionette.min.js',
-        
-        // ...
-        
+        'jQuery': '../lib/jquery-3.2.1.min',
+        'underscore': '../lib/underscore-min',
+        'backbone': '../lib/backbone-min',
+        'backbone.radio': '../lib/backbone.radio',
+        'marionette': '../lib/backbone.marionette.min',
     }
 });
 
@@ -90,17 +88,11 @@ require(
         $
         
     ) {
+        
+        // View 랜더링을 담당하는 View
         var RootView = Marionette.View.extend({
             tagName: "div",
             template: _.template("<h1>Hello World!</div>");
-        });
-        
-        var Router = Marionette.Router.extend({
-        
-        });
-        
-        var Controller = Marionette.Controller.extend({
-        
         });
         
         var App = Marionette.Application.extend({
