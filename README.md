@@ -1,6 +1,6 @@
 # Marionette Fundamental
 
-Last Updated by 04.25.18
+Last Updated by 04.30.18
 
 ## Overview
 
@@ -8,31 +8,28 @@ Last Updated by 04.25.18
 
 ## Marionette JS 란?
 
-`JavaScript`의 SPA 라이브러리 중 하나인 `Backbone JS`의 확장 라이브러리인 `Marionette JS`는 
+`JavaScript`의 SPA 라이브러리 중 하나인 `Backbone JS`의 확장 라이브러리인 `Marionette JS`는 큰 규모의 자바스크립 어플리케이션을 
+구조화 시켜 관리할 수 있게 도와준다. 특히 `Backbone JS`의 `View`를 렌더링 하려면 여러 줄의 같은 코드들을 작성해야하는데 (보일러 플레이트 코드)
+`Marionette JS`에서는 이 코드들을 줄여준다. 또한 메모리 이슈가 있는 고스트 뷰(Ghost View)와 같은 문제도 알아서 해결해준다.
 
-## 설치 방법
+## 설치 및 기본 실행 방법
 
-사용하는 모듈화 툴에 따라 다양한 설치방법이 있습니다. 이 리포에서는 `Require JS`를 기반으로 소개하도록 하겠습니다.  
+사용하는 모듈화 툴에 따라 다양한 설치방법이 있다. 이 리포에서는 `Require JS`를 기반으로 소개하겠다.
 
 ***디렉토리 구조***
 
 ```markdown
 [Home]
 - [app]
-    - [collections]
-    - [models]
-    - [routers]
-    - [templates]
-    - [views]
     - main.js
 - [lib]
-    - require.js
-    - jquery-3.2.1.min.js
-    - underscore-min.js
-    - backbone-min.js
-    - backbone.radio.js
-    - backbone.marionette.min.js
-    - text.js
+    - require.js (JS 모듈화 용 라이브러리) 
+    - text.js (Require JS의 추가 플러그인 / html 모듈화용)
+    - jquery-3.2.1.min.js (Backbone JS의 의존 라이브러리)
+    - underscore-min.js (Backbone JS의 의존 라이브러리)
+    - backbone-min.js (Marionette JS의 의존 라이브러리)
+    - backbone.radio.js (Marionette JS의 추가 플러그인 / 이벤트 관리용)
+    - backbone.marionette.min.js (Marionette JS)
 - index.html
 ```
 
@@ -64,27 +61,58 @@ Last Updated by 04.25.18
 // 설정 부분
 require.config({
     paths: {
-        'jQuery': '~',
-        'underscore': '~',
-        'backbone': '~',
-        'marionette': '~'
-        // ~~
+        // 각종 라이브러리를 불러와 줍니다.
+        'jQuery': './lib/jquery-3.2.1.min.js',
+        'underscore': './lib/underscore-min.js',
+        'backbone': './lib/backbone-min.js',
+        'marionette': './lib/backbone.marionette.min.js',
+        
+        // ...
+        
     }
 });
 
+  
+// 실제 어플리케이션이 로직이 시작하는 부분
 require(
     [
+        
         'marionette',
         'backbone',
-        'todoModel',
-        'todoView'
+        'underscore',
+        'jQuery'
+        
     ], function(
+        
         Marionette,
         Backbone,
-        TodoModel,
-        TodoView
-    ) {
+        _,
+        $
         
+    ) {
+        var RootView = Marionette.View.extend({
+            tagName: "div",
+            template: _.template("<h1>Hello World!</div>");
+        });
+        
+        var Router = Marionette.Router.extend({
+        
+        });
+        
+        var Controller = Marionette.Controller.extend({
+        
+        });
+        
+        var App = Marionette.Application.extend({
+            region: '#app-hook',
+    
+            onStart: function() {
+                this.showView(new RootView());
+            }
+        });
+    
+        var app = new App();
+        app.start();
     }
 )
 ```
