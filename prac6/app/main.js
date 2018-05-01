@@ -14,10 +14,18 @@ require
 require(
     [
         'backbone',
-        'marionette'
+        'marionette',
+        'underscore',
+        'app.router',
+        './collections/blog.collection',
+        './views/layout.view',
     ], function(
         Backbone,
-        Marionette
+        Marionette,
+        _,
+        Router,
+        BlogCollection,
+        LayoutView
     ) {
 
         var initialData = {
