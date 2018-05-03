@@ -86,8 +86,11 @@ require(
         });
         
         var App = Marionette.Application.extend({
+            
+            // Application의 Entry Point가 되는 DOM 지점
             region: '#app-hook',
     
+            // Application이 준비된 후 실행되는 함수 (Marionette 내장 함수)
             onStart: function() {
                 this.showView(new RootView());
             }

@@ -8,7 +8,8 @@ require.config({
         'backbone': '../lib/backbone-min',
         'backbone.radio': '../lib/backbone.radio',
         'marionette': '../lib/backbone.marionette.min',
-    }
+    },
+
 });
 
 
