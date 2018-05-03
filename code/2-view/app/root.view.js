@@ -4,7 +4,7 @@ define(
         "backbone",
         "underscore",
         "jQuery",
-        "text!root.template.html"
+        "text!/app/root.template.html"
     ], function(
         Marionette,
         Backbone,

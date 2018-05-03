@@ -6,6 +6,7 @@ require.config({
         // 각종 라이브러리를 불러와 줍니다.
         "jQuery": "/lib/jquery-3.2.1.min",
         "underscore": "/lib/underscore-min",
+        "text": "/lib/text",
         "backbone": "/lib/backbone-min",
         "backbone.radio": "/lib/backbone.radio",
         "marionette": "/lib/backbone.marionette.min",
