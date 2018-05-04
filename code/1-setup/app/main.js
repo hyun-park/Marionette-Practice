@@ -1,6 +1,7 @@
 
 // 설정 부분
 require.config({
+    baseUrl: ".",
     paths: {
         // 각종 라이브러리를 불러와 줍니다.
         'jQuery': '../lib/jquery-3.2.1.min',
@@ -8,6 +9,12 @@ require.config({
         'backbone': '../lib/backbone-min',
         'backbone.radio': '../lib/backbone.radio',
         'marionette': '../lib/backbone.marionette.min',
+    },
+    shim: {
+        // 각종 라이브러리를 불러와 줍니다.
+        'backbone': {
+            deps: ['underscore', 'jQuery'],
+        },
     },
 
 });
