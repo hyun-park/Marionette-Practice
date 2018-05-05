@@ -1,15 +1,15 @@
 import Marionette from 'backbone.marionette';
-import rootTemplate from './root.template.html';
+import msgTemplate from '../templates/message.template.html';
+import _ from 'underscore';
 
-const RootView = Marionette.View.extend({
-    template: rootTemplate,
+const MsgView = Marionette.View.extend({
+    template: _.template(msgTemplate),
     templateContext: function() {
         return {
             userName: this.model.get('userName'),
             contents: this.model.get('contents'),
         }
     },
-    tagName: "div",
 });
 
-export default RootView;
+export default MsgView;
