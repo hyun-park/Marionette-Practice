@@ -1,9 +1,11 @@
 
 ## `Model` 알아보기
 
-MVC 패턴을 따르는 `Marionette JS` 에서 가장 중요한 부분은 `View` 다. `Marionette JS` 에서는 `View` 가 MVC 중 Controller의 역할을 담당하기 때문이다. MVC의 View에 해당하는 템플릿을 랜더리링하고 해당 View에 들어갈 메인 로직을 담당한다. 
+`Marionette JS`에서 `Model`은 데이터를 담당한다. (`Backbone JS`의 `Model`을 그대로 사용하고 있다.) REST 규칙을 따르는 API 서버에서 데이터를 가져와서 주로 `View`에 연결시켜 사용한다. 
+`Model` 값이 변경되면 `Model`에 연결된 `View`는 자동으로 다시 랜더링이 되어 최신 결과가 반영된다. 
 
-Angular 나 React의 Component와 비슷한 개념이다.
+이후에 다루겠지만 `Model`이 복수개가 있으면 `Collection`과 연동하여 사용할 수 있다.
+
 
 ***디렉토리 구조***
 
