@@ -28,8 +28,11 @@ require(
         "underscore",
         "jQuery",
 
-        // View를 가져온다.
+        // Root View를 가져온다.
         "/app/root.view.js",
+
+        // Message Model을 가져온다.
+        "/app/message.model.js",
 
     ], function(
 
@@ -38,6 +41,7 @@ require(
         _,
         $,
         RootView,
+        MsgModel,
 
     ) {
 
@@ -48,7 +52,12 @@ require(
 
             onStart: function() {
                 //가져온 뷰를 인스턴스화
-                this.showView(new RootView());
+                this.showView(new RootView({
+                    model: new MsgModel({
+                        userName: `Rocket`,
+                        contents: `Good Morning, Sir!`,
+                    }),
+                }));
             }
         });
 

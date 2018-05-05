@@ -11,7 +11,7 @@ require.config({
         'marionette': '../lib/backbone.marionette.min',
     },
     shim: {
-        // 각종 라이브러리를 불러와 줍니다.
+        // Backbone JS Dependency
         'backbone': {
             deps: ['underscore', 'jQuery'],
         },

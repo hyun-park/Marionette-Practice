@@ -1,6 +1,6 @@
 # Marionette Fundamental
 
-Last Updated by 05.02.18
+Last Updated by 05.04.18
 
 ## Overview
 
@@ -19,3 +19,7 @@ Last Updated by 05.02.18
 ## 2. `View` 알아보기
 
 [설명 및 코드 보기](https://github.com/Rocket-Hyun/Marionette-Practice/tree/master/code/2-view)
+
+## 3. `Model` 알아보기
+
+[설명 및 코드 보기](https://github.com/Rocket-Hyun/Marionette-Practice/tree/master/code/3-model)

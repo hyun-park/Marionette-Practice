@@ -1,5 +1,5 @@
 
-## `View` 알아보기
+## `Model` 알아보기
 
 MVC 패턴을 따르는 `Marionette JS` 에서 가장 중요한 부분은 `View` 다. `Marionette JS` 에서는 `View` 가 MVC 중 Controller의 역할을 담당하기 때문이다. MVC의 View에 해당하는 템플릿을 랜더리링하고 해당 View에 들어갈 메인 로직을 담당한다. 
 
@@ -13,6 +13,7 @@ Angular 나 React의 Component와 비슷한 개념이다.
     - main.js
     - root.view.js
     - root.template.html
+    - message.model.js [추가된 부분]
 - [lib]
     - require.js (JS 모듈화 용 라이브러리) 
     - text.js (Require JS의 추가 플러그인 / html 모듈화용)
@@ -49,27 +50,27 @@ Angular 나 React의 Component와 비슷한 개념이다.
 ***app/main.js***
 
 ```js
+
 // 설정 부분
 require.config({
     baseUrl: ".",
     paths: {
         // 각종 라이브러리를 불러와 줍니다.
-        'jQuery': '../lib/jquery-3.2.1.min',
-        'underscore': '../lib/underscore-min',
-        'backbone': '../lib/backbone-min',
-        'backbone.radio': '../lib/backbone.radio',
-        'marionette': '../lib/backbone.marionette.min',
+        "jQuery": "/lib/jquery-3.2.1.min",
+        "underscore": "/lib/underscore-min",
+        "text": "/lib/text",
+        "backbone": "/lib/backbone-min",
+        "backbone.radio": "/lib/backbone.radio",
+        "marionette": "/lib/backbone.marionette.min",
     },
     shim: {
-        // Backbone JS Dependency
         'backbone': {
             deps: ['underscore', 'jQuery'],
         },
     },
-
 });
 
-  
+
 // 실제 어플리케이션이 로직이 시작하는 부분
 require(
     [
@@ -79,8 +80,11 @@ require(
         "underscore",
         "jQuery",
 
-        // View를 가져온다.
+        // Root View를 가져온다.
         "/app/root.view.js",
+
+        // Message Model을 가져온다.
+        "/app/message.model.js",
 
     ], function(
 
@@ -89,6 +93,7 @@ require(
         _,
         $,
         RootView,
+        MsgModel,
 
     ) {
 
@@ -99,7 +104,12 @@ require(
 
             onStart: function() {
                 //가져온 뷰를 인스턴스화
-                this.showView(new RootView());
+                this.showView(new RootView({
+                    model: new MsgModel({
+                        userName: `Rocket`,
+                        contents: `Good Morning, Sir!`,
+                    }),
+                }));
             }
         });
 
@@ -107,6 +117,7 @@ require(
         app.start();
     }
 );
+
 ```
 
 ***app/root.view.js***
@@ -118,7 +129,7 @@ define(
         "backbone",
         "underscore",
         "jQuery",
-        "text!/app/root.template.html"
+        "text!/app/root.template.html",
     ], function(
         Marionette,
         Backbone,
@@ -128,6 +139,12 @@ define(
     ) {
         const RootView = Marionette.View.extend({
             template: rootTemplate,
+            templateContext: function() {
+                return {
+                    userName: this.model.get('userName'),
+                    contents: this.model.get('contents'),
+                }
+            },
             tagName: "div",
         });
 
@@ -135,12 +152,46 @@ define(
 
     }
 );
+
 ```
+
+***app/message.model.js***
+```js
+define(
+    [
+        "marionette",
+        "backbone",
+        "underscore",
+        "jQuery",
+    ], function(
+        Marionette,
+        Backbone,
+        _,
+        $,
+    ) {
+        const MsgModel = Backbone.Model.extend({
+            // Model의 default 값을 설정한다.
+            defaults: {
+                userName: '',
+                contents: ''
+            },
+        });
+
+        return MsgModel;
+
+    }
+);
+```
+
 
 ***app/root.template.html***
 
 ```html
 <script type="text/template">
-    <h1>Hello Maionette!!</h1>
+    <h1>Message From <%- userName %></h1>
+    <p>
+        <%- contents %>
+    </p>
+
 </script>
 ```
